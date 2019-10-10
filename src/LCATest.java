@@ -5,7 +5,8 @@ import org.junit.jupiter.api.Test;
 public class LCATest {
 
 	
-	// Test LCA BT[4,2,6,1,3,5,7]
+	// Test LCA 
+	//[4,2,6,1,3,5,7]
     @Test
     public void test() {
     	LCA.BT_NoParentPointer tree = new LCA.BT_NoParentPointer();
@@ -16,11 +17,11 @@ public class LCATest {
         /*
         
         BST Diagram:
-        	  4
-			/   \
-		   2     6
-		  / \   / \
-		 1	 3 5   7
+              4
+            /   \
+           2     6
+          / \   / \
+         1   3 5   7
 
         */
 
@@ -31,4 +32,22 @@ public class LCATest {
         assertEquals( 4,tree.findLCA(7, 2));
         assertEquals( 4,tree.findLCA(3, 5));
     }
+    
+    @Test 
+    // Test with just one node and root
+    //[1,4]
+	public void testOneNode() {
+    	LCA.BT_NoParentPointer tree = new LCA.BT_NoParentPointer();
+		tree.root = new LCA.Node(1);
+		tree.root.right = new LCA.Node(4);
+	
+		/*
+               1
+                \
+                 4
+		 */
+		
+		assertEquals(1, tree.findLCA(4,1));
+		assertEquals(1, tree.findLCA(1,4));
+	}
 }
