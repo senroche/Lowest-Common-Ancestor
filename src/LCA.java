@@ -27,10 +27,33 @@ public static class BT_NoParentPointer
      
 
 
-	// Finds LCA will utilise an internal function that calls findPath
-	int findLCA(int n1, int n2) {
-		return 0;
-	}
+	// Finds LCA, will utilise an internal function that calls findPath
+    int findLCA(int n1, int n2)
+    { 
+        path1.clear(); 
+        path2.clear(); 
+        return findLCAInternal(root, n1, n2); 
+    } 
+  
+    private int findLCAInternal(Node root, int n1, int n2)
+    { 
+  
+        if (!findPath(root, n1, path1) || !findPath(root, n2, path2)) 
+        { 
+            System.out.println((path1.size() > 0) ? "Node 1 present" : "Node 1 missing"); 
+            System.out.println((path2.size() > 0) ? "Node 2 present" : "Node 2 missing"); 
+            return -1; 
+        } 
+  
+        int i; 
+        for (i = 0; i < path1.size() && i < path2.size(); i++) 
+        {       
+            if (!path1.get(i).equals(path2.get(i))) 
+                break; 
+        } 
+  
+        return path1.get(i-1); 
+    } 
 	
 		
 	    
