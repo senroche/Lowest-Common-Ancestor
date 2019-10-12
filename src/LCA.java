@@ -27,7 +27,7 @@ public static class BT_NoParentPointer
      
 
 
-	// Finds LCA, will utilise an internal function that calls findPath
+    // Finds LCA, will utilise an internal function that calls findPath
     int findLCA(int n1, int n2)
     { 
         path1.clear(); 
@@ -57,19 +57,37 @@ public static class BT_NoParentPointer
 	
 		
 	    
-	// Finds the path from node to the given root of the tree, Stores the
+    // Finds the path from node to the given root of the tree, Stores the
     // path in a vector path[], returns true if path exists otherwise false
-    private boolean findPath(Node root, int n, List<Integer> path) {
-        
+    private boolean findPath(Node root, int n, List<Integer> path) 
+    {  
+        if (root == null) 
+        { 
+            return false; 
+        } 
+        path.add(root.data); 
 
-        return false;
+        if (root.data == n) 
+        { 
+            return true; 
+        }
+        if (root.left != null && findPath(root.left, n, path)) 
+        { 
+            return true; 
+        } 
+        if (root.right != null && findPath(root.right, n, path)) 
+        { 
+            return true; 
+        }
+        path.remove(path.size()-1); 
+        return false; 
     }
-
-
 }
 
 public static void main(String[] args) {
 
-
+	
+	
+	
 }
 }
