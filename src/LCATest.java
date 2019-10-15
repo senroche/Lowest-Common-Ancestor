@@ -42,6 +42,21 @@ public class LCATest {
     }
     
     @Test
+    public void DAG_LCATest() {
+        LCA.DAGNode head = new LCA.DAGNode(1);
+        LCA.DAGNode nodeTwo = new LCA.DAGNode(3);
+        LCA.DAGNode nodeThree = new LCA.DAGNode(5);
+        LCA.DAGNode nodeFour = new LCA.DAGNode(7);
+        LCA.DAGNode nodeFive = new LCA.DAGNode(9);
+        head.edges.add(nodeTwo);
+        head.edges.add(nodeTwo);
+        head.edges.add(nodeThree);
+        head.edges.add(nodeFour);
+        head.edges.add(nodeFive);
+        assertEquals(head, LCA.findLCA_DAG(head, nodeTwo, nodeFive));
+    }
+    
+    @Test
     //Test null root
     public void unbalancedTreeRight() {
     	LCA.BT_NoParentPointer tree = new LCA.BT_NoParentPointer();

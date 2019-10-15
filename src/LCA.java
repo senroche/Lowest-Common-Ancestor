@@ -36,6 +36,11 @@ public static class DAGNode {
     }
 }
 
+public static DAGNode findLCA_DAG(DAGNode head, DAGNode nodeOne, DAGNode nodeTwo) {
+	return head;
+
+}
+
 //Binary tree class for LCA with no parent pointer.
 public static class BT_NoParentPointer 
 { 
