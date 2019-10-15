@@ -41,6 +41,41 @@ public class LCATest {
         
     }
     
+    @Test
+    //Test null root
+    public void unbalancedTreeRight() {
+    	LCA.BT_NoParentPointer tree = new LCA.BT_NoParentPointer();
+        tree.root = new LCA.Node(4);
+        tree.root.right = new LCA.Node(6); 
+        tree.root.right.left = new LCA.Node(5);
+        tree.root.right.right = new LCA.Node(7); 
+        tree.root.right.right.right = new LCA.Node(9); 
+        tree.root.right.right.right.right = new LCA.Node(11);
+	
+        /*
+        
+        BST Diagram:
+              4
+                \
+                 6
+                / \
+               5   7
+                    \
+                     9
+                      \
+                      11
+    
+
+        */
+		
+		assertEquals(9, tree.findLCA(11,9));
+		assertEquals(6, tree.findLCA(7,5));
+		assertEquals(4, tree.findLCA(4,11));
+		assertEquals(6, tree.findLCA(6,7));
+	}
+    
+    
+    
     @Test 
     // Test with just one node and root
     //[1,4]
@@ -72,7 +107,7 @@ public class LCATest {
 		assertEquals(1, tree.findLCA(1,1));
 	}
     
-@Test
+    @Test
     //Test null root
     public void testNullRoot() {
     	LCA.BT_NoParentPointer tree = new LCA.BT_NoParentPointer();
@@ -86,5 +121,6 @@ public class LCATest {
 		
 		assertEquals(-1, tree.findLCA(1,1));
 	}
+
     
 }
