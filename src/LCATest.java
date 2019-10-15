@@ -25,18 +25,26 @@ public class LCATest {
 
         */
 
-        assertEquals( 1,tree.findLCA(2, 6));
+        assertEquals( 4,tree.findLCA(2, 6));
         assertEquals( 2,tree.findLCA(1, 3));
         assertEquals( 6,tree.findLCA(5, 7));
         assertEquals( 4,tree.findLCA(1, 6));
         assertEquals( 4,tree.findLCA(7, 2));
         assertEquals( 4,tree.findLCA(3, 5));
+        assertEquals( 4,tree.findLCA(4, 6));
+        assertEquals( 2,tree.findLCA(1, 2));
+        
+        //Test node not found
+        assertEquals( -1,tree.findLCA(250, 2));
+        assertEquals( -1,tree.findLCA(2, 250));
+        assertEquals( -1,tree.findLCA(250, 250));
+        
     }
     
     @Test 
     // Test with just one node and root
     //[1,4]
-	public void testOneNode() {
+	public void testTwoNode() {
     	LCA.BT_NoParentPointer tree = new LCA.BT_NoParentPointer();
 		tree.root = new LCA.Node(1);
 		tree.root.right = new LCA.Node(4);
@@ -50,4 +58,18 @@ public class LCATest {
 		assertEquals(1, tree.findLCA(4,1));
 		assertEquals(1, tree.findLCA(1,4));
 	}
+    
+    @Test
+    public void testOneNode() {
+    	LCA.BT_NoParentPointer tree = new LCA.BT_NoParentPointer();
+		tree.root = new LCA.Node(1);
+	
+		/*
+               1
+                
+		 */
+		
+		assertEquals(1, tree.findLCA(1,1));
+	}
+    
 }
