@@ -72,4 +72,19 @@ public class LCATest {
 		assertEquals(1, tree.findLCA(1,1));
 	}
     
+@Test
+    //Test null root
+    public void testNullRoot() {
+    	LCA.BT_NoParentPointer tree = new LCA.BT_NoParentPointer();
+		tree.root = null;
+	
+		/*
+             null
+           /      \
+                
+		 */
+		
+		assertEquals(-1, tree.findLCA(1,1));
+	}
+    
 }
