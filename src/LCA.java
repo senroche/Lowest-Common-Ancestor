@@ -15,8 +15,26 @@ public static class Node {
         data = value; 
         left = null;
         right = null;
-    } 
+    }   
 } 
+
+// Directed Acyclic Graph Node
+public static class DAGNode {
+    int value;
+    ArrayList<DAGNode> edges;
+
+    DAGNode(int value)
+    {
+        this.value = value;
+        edges = new ArrayList<>();
+    }
+
+    DAGNode(int value, ArrayList<DAGNode> edges) 
+    {
+        this.value = value;
+        this.edges = edges;
+    }
+}
 
 //Binary tree class for LCA with no parent pointer.
 public static class BT_NoParentPointer 
