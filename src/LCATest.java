@@ -124,19 +124,69 @@ public class LCATest {
 	}
     
     @Test
+    //Simple test case with edges between head and all nodes
+    //Changed node names to match values.
     public void simpleTestDAG() {
         LCA.DAGNode head = new LCA.DAGNode(1);
-        LCA.DAGNode nodeTwo = new LCA.DAGNode(3);
-        LCA.DAGNode nodeThree = new LCA.DAGNode(5);
-        LCA.DAGNode nodeFour = new LCA.DAGNode(7);
-        LCA.DAGNode nodeFive = new LCA.DAGNode(9);
+        LCA.DAGNode nodeTwo = new LCA.DAGNode(2);
+        LCA.DAGNode nodeFour = new LCA.DAGNode(4);
+        LCA.DAGNode nodeSix = new LCA.DAGNode(6);
+        LCA.DAGNode nodeEight = new LCA.DAGNode(8);
+        LCA.DAGNode nodeTen = new LCA.DAGNode(10);
+        head.edges.add(nodeTwo);
+        head.edges.add(nodeFour);
+        head.edges.add(nodeSix);
+        head.edges.add(nodeEight);
+        head.edges.add(nodeTen);
+        
+        assertEquals(head, LCA.findLCA_DAG(head, head, nodeSix));
+        assertEquals(head, LCA.findLCA_DAG(head, nodeTwo, nodeSix));
+        assertEquals(head, LCA.findLCA_DAG(head, nodeFour, nodeSix));
+        assertEquals(head, LCA.findLCA_DAG(head, nodeEight, nodeSix));
+        //Check ancestor of self and self
+        assertEquals(nodeSix, LCA.findLCA_DAG(head, nodeSix, nodeSix));
+    }
+    
+    @Test
+    //Example taken from LCA.pdf slides made available on course website.
+    //Screenshot of visualization will be added.
+    public void largeInputTestDAG() {
+        LCA.DAGNode head = new LCA.DAGNode(1);
+        LCA.DAGNode nodeTwo = new LCA.DAGNode(2);
+        LCA.DAGNode nodeThree = new LCA.DAGNode(3);
+        LCA.DAGNode nodeFour = new LCA.DAGNode(4);
+        LCA.DAGNode nodeFive = new LCA.DAGNode(5);
+        LCA.DAGNode nodeSix = new LCA.DAGNode(6);
+        LCA.DAGNode nodeSeven = new LCA.DAGNode(7);
+        LCA.DAGNode nodeEight = new LCA.DAGNode(8);
+        LCA.DAGNode nodeNine = new LCA.DAGNode(9);
+        LCA.DAGNode nodeTen = new LCA.DAGNode(10);
+        LCA.DAGNode nodeEleven = new LCA.DAGNode(11);
+        LCA.DAGNode nodeTwelve = new LCA.DAGNode(12);
+        LCA.DAGNode nodeThirteen = new LCA.DAGNode(13);
         head.edges.add(nodeTwo);
         head.edges.add(nodeTwo);
         head.edges.add(nodeThree);
         head.edges.add(nodeFour);
-        head.edges.add(nodeFive);
-        assertEquals(head, LCA.findLCA_DAG(head, nodeTwo, nodeFive));
+        head.edges.add(nodeSix);
+        nodeThree.edges.add(nodeFive);
+        nodeFive.edges.add(nodeSeven);
+        nodeFive.edges.add(nodeEight);
+        nodeSeven.edges.add(nodeTen);
+        nodeTen.edges.add(nodeNine);
+        nodeTen.edges.add(nodeEleven);
+        nodeTen.edges.add(nodeTwelve);
+        nodeTen.edges.add(nodeThirteen);
+        
+        assertEquals(nodeFive, LCA.findLCA_DAG(head, nodeSeven, nodeEight));
+        assertEquals(nodeSix, LCA.findLCA_DAG(head, nodeSix, nodeSix));
+        assertEquals(nodeTen, LCA.findLCA_DAG(head, nodeTwelve, nodeEleven));
+        assertEquals(nodeTen, LCA.findLCA_DAG(head, nodeNine, nodeThirteen));
+        assertEquals(head, LCA.findLCA_DAG(head, nodeSix, nodeEleven));
+        
+        
     }
+    
     
     @Test
 
