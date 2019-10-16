@@ -3,12 +3,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 public class LCATest {
-
 	
-	// Test LCA 
-	//[4,2,6,1,3,5,7]
+	// Test LCA - BST input [4,2,6,1,3,5,7] 
     @Test
-    public void test() {
+    public void standardTestBST() {
     	LCA.BT_NoParentPointer tree = new LCA.BT_NoParentPointer();
         tree.root = new LCA.Node(4); tree.root.left = new LCA.Node(2);
         tree.root.right = new LCA.Node(6); tree.root.left.left = new LCA.Node(1);
@@ -43,8 +41,8 @@ public class LCATest {
     
     
     @Test
-    //Test null root
-    public void unbalancedTreeRight() {
+    //Test unbalanced tree 
+    public void testUnbalancedBST() {
     	LCA.BT_NoParentPointer tree = new LCA.BT_NoParentPointer();
         tree.root = new LCA.Node(4);
         tree.root.right = new LCA.Node(6); 
@@ -77,10 +75,12 @@ public class LCATest {
     
     
     
+    
+    
     @Test 
     // Test with just one node and root
     //[1,4]
-	public void testTwoNode() {
+	public void testTwoNodeBST() {
     	LCA.BT_NoParentPointer tree = new LCA.BT_NoParentPointer();
 		tree.root = new LCA.Node(1);
 		tree.root.right = new LCA.Node(4);
@@ -96,7 +96,7 @@ public class LCATest {
 	}
     
     @Test
-    public void testOneNode() {
+    public void testOneNodeBST() {
     	LCA.BT_NoParentPointer tree = new LCA.BT_NoParentPointer();
 		tree.root = new LCA.Node(1);
 	
@@ -110,7 +110,7 @@ public class LCATest {
     
     @Test
     //Test null root
-    public void testNullRoot() {
+    public void testNullRootBST() {
     	LCA.BT_NoParentPointer tree = new LCA.BT_NoParentPointer();
 		tree.root = null;
 	
@@ -124,7 +124,7 @@ public class LCATest {
 	}
     
     @Test
-    public void DAG_LCATest() {
+    public void testSimpleDAG() {
         LCA.DAGNode head = new LCA.DAGNode(1);
         LCA.DAGNode nodeTwo = new LCA.DAGNode(3);
         LCA.DAGNode nodeThree = new LCA.DAGNode(5);
@@ -137,6 +137,4 @@ public class LCATest {
         head.edges.add(nodeFive);
         assertEquals(head, LCA.findLCA_DAG(head, nodeTwo, nodeFive));
     }
-
-    
 }
