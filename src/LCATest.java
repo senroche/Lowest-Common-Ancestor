@@ -41,6 +41,56 @@ public class LCATest {
         
     }
     
+
+    @Test
+    public void largeInputTestBST() {
+    	LCA.BT_NoParentPointer tree = new LCA.BT_NoParentPointer();
+    	tree.root = new LCA.Node(21);
+    	tree.root.left = new LCA.Node(14); 
+        tree.root.right = new LCA.Node(28); 
+        tree.root.left.left = new LCA.Node(11);
+        tree.root.left.right = new LCA.Node(18); 
+        tree.root.right.left = new LCA.Node(25);
+        tree.root.right.right = new LCA.Node(32);
+        tree.root.left.left.left = new LCA.Node(5); 
+        tree.root.left.left.right = new LCA.Node(12);
+        tree.root.left.right.left = new LCA.Node(15);
+        tree.root.left.right.right = new LCA.Node(19);
+        tree.root.right.left.left = new LCA.Node(23); 
+        tree.root.right.left.right = new LCA.Node(27);
+        tree.root.right.right.left = new LCA.Node(30); 
+        tree.root.right.right.right = new LCA.Node(37);
+        
+        assertEquals( 21,tree.findLCA(21, 21));
+        assertEquals( 21,tree.findLCA(28, 14));
+        assertEquals( 14,tree.findLCA(11, 18));
+        assertEquals( 32,tree.findLCA(30, 37));
+        
+        assertEquals( 18,tree.findLCA(15, 18));
+        assertEquals( 14,tree.findLCA(11, 18));
+        assertEquals( 28,tree.findLCA(25, 32));
+        assertEquals( 28,tree.findLCA(23, 30));
+        assertEquals( 21,tree.findLCA(21, 28));
+        assertEquals( 21,tree.findLCA(28, 18));
+        assertEquals( 21,tree.findLCA(37, 11));
+
+    
+        
+        /*
+        
+	    BST Diagram:
+	                 21
+	              /     \
+	           14        28
+	          / \        / \
+	        11    18     25   32
+	       / \    / \    / \   / \
+	      5  12  15 19  23 27  30 37
+      
+        */
+    }
+    
+
     @Test
     //Test null root
     public void unbalancedTreeRight() {
@@ -121,6 +171,8 @@ public class LCATest {
 		
 		assertEquals(-1, tree.findLCA(1,1));
 	}
+
+
 
     
 }
