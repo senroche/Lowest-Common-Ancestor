@@ -124,7 +124,7 @@ public class LCATest {
 	}
     
     @Test
-    public void testSimpleDAG() {
+    public void simpleTestDAG() {
         LCA.DAGNode head = new LCA.DAGNode(1);
         LCA.DAGNode nodeTwo = new LCA.DAGNode(3);
         LCA.DAGNode nodeThree = new LCA.DAGNode(5);
@@ -136,5 +136,15 @@ public class LCATest {
         head.edges.add(nodeFour);
         head.edges.add(nodeFive);
         assertEquals(head, LCA.findLCA_DAG(head, nodeTwo, nodeFive));
+    }
+    
+    @Test
+
+    public void testNullInputsDAG() {
+        assertEquals(LCA.findLCA_DAG(null, null, null), null); // LCA with two null inputs
+        LCA.DAGNode nodeOne = new LCA.DAGNode(6);
+        assertEquals(LCA.findLCA_DAG(null, null, nodeOne), null); // Tests with one null input
+        assertEquals(LCA.findLCA_DAG(null, nodeOne, null), null); 
+
     }
 }

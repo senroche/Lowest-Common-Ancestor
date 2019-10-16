@@ -171,13 +171,9 @@ public static boolean checkPathDAG(DAGNode node, DAGNode nodeOne) {
                 return true;
 
             }
-
         }
-
     }
-
     return false;
-
 }
 
 
@@ -225,8 +221,5 @@ public static void addNodesToListDAG(ArrayList<DAGNode> nodes, DAGNode root) {
 
 public static void main(String[] args) {
 	
-	
-	
-	
-}
+	}
 }
