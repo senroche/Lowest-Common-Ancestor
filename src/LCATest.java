@@ -9,9 +9,12 @@ public class LCATest {
     @Test
     public void testStandardBST() {
     	LCA.BT_NoParentPointer tree = new LCA.BT_NoParentPointer();
-        tree.root = new LCA.Node(4); tree.root.left = new LCA.Node(2);
-        tree.root.right = new LCA.Node(6); tree.root.left.left = new LCA.Node(1);
-        tree.root.left.right = new LCA.Node(3); tree.root.right.left = new LCA.Node(5);
+        tree.root = new LCA.Node(4); 
+        tree.root.left = new LCA.Node(2);
+        tree.root.right = new LCA.Node(6); 
+        tree.root.left.left = new LCA.Node(1);
+        tree.root.left.right = new LCA.Node(3); 
+        tree.root.right.left = new LCA.Node(5);
         tree.root.right.right = new LCA.Node(7);
         /*
         
@@ -39,9 +42,9 @@ public class LCATest {
         
     }
    
-
+    // Larger BST 
     @Test
-    public void largeInputTestBST() {
+    public void testLargeInputBST() {
     	LCA.BT_NoParentPointer tree = new LCA.BT_NoParentPointer();
     	tree.root = new LCA.Node(21);
     	tree.root.left = new LCA.Node(14); 
@@ -155,7 +158,7 @@ public class LCATest {
 	}
     
     @Test
-    //Test null root
+    //Test null root - Seems irrelevant but increases code coverage
     public void testNullRootBST() {
     	LCA.BT_NoParentPointer tree = new LCA.BT_NoParentPointer();
 		tree.root = null;
@@ -166,6 +169,7 @@ public class LCATest {
                 
 		 */
 		
+		//Node missing
 		assertEquals(-1, tree.findLCA(1,1));
 	}
     
@@ -195,8 +199,8 @@ public class LCATest {
     
     @Test
     //Example taken from LCA.pdf slides made available on course website.
-    //Screenshot of visualization will be added.
-    public void largeInputTestDAG() {
+    //Screenshot visualization will be included.
+    public void testlargeInputDAG() {
         LCA.DAGNode head = new LCA.DAGNode(1);
         LCA.DAGNode nodeTwo = new LCA.DAGNode(2);
         LCA.DAGNode nodeThree = new LCA.DAGNode(3);
@@ -210,6 +214,7 @@ public class LCATest {
         LCA.DAGNode nodeEleven = new LCA.DAGNode(11);
         LCA.DAGNode nodeTwelve = new LCA.DAGNode(12);
         LCA.DAGNode nodeThirteen = new LCA.DAGNode(13);
+        
         head.edges.add(nodeTwo);
         head.edges.add(nodeTwo);
         head.edges.add(nodeThree);
