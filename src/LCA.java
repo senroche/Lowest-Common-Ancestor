@@ -3,6 +3,7 @@
 
 import java.util.ArrayList; 
 import java.util.List; 
+import java.util.LinkedList;
 
 public class LCA{
 	
@@ -15,7 +16,7 @@ public static class Node {
         data = value; 
         left = null;
         right = null;
-    } 
+    }   
 } 
 
 //Binary tree class for LCA with no parent pointer.
@@ -84,10 +85,141 @@ public static class BT_NoParentPointer
     }
 }
 
+
+//Directed Acyclic Graph Node
+public static class DAGNode {
+
+    int value;
+
+    ArrayList<DAGNode> edges;
+
+
+
+    DAGNode(int value) {
+
+        this.value = value;
+
+        edges = new ArrayList<>();
+
+    }
+
+
+
+    DAGNode(int value, ArrayList<DAGNode> edges) {
+
+        this.value = value;
+
+        this.edges = edges;
+
+    }
+
+}
+
+
+public static DAGNode findLCA_DAG(DAGNode head, DAGNode nodeOne, DAGNode nodeTwo){
+
+    DAGNode LCA = null;
+
+    ArrayList<DAGNode> nodes = new ArrayList<>();
+
+    addNodesToListDAG(nodes, head);
+
+    boolean isAncestor[] = new boolean[nodes.size()];
+
+    for (int i = 0; i < isAncestor.length; i++)
+
+        isAncestor[i] = false;
+
+    for (int i = 0; i < nodes.size(); i++) {
+
+        if (checkPathDAG(nodes.get(i), nodeOne, nodeTwo)) {
+
+            isAncestor[i] = true;
+
+        }
+    }
+
+    for (int i = 0; i < nodes.size(); i++) {
+
+        if(isAncestor[i])
+
+            LCA = nodes.get(i);
+
+    }
+
+    return LCA;
+
+}
+
+// Checks if one node is ancestor to the other
+public static boolean checkPathDAG(DAGNode node, DAGNode nodeOne) {
+
+    if (node == null)
+
+        return false;
+
+    if (node == nodeOne)
+
+        return true;
+
+    else {
+
+        for (int i = 0; i < node.edges.size(); i++) {
+
+            if (checkPathDAG(node.edges.get(i), nodeOne)) {
+
+                return true;
+
+            }
+        }
+    }
+    return false;
+}
+
+
+public static boolean checkPathDAG(DAGNode node, DAGNode nodeOne, DAGNode nodeTwo) {
+
+    if (checkPathDAG(node, nodeOne) && checkPathDAG(node, nodeTwo))
+
+        return true;
+
+    return false;
+
+}
+
+public static void addNodesToListDAG(ArrayList<DAGNode> nodes, DAGNode root) {
+
+    if (root != null) {
+
+        LinkedList<DAGNode> queue = new LinkedList<>();
+
+        queue.add(root);
+
+        DAGNode cur;
+
+        while (queue.size() != 0) {
+
+            cur = queue.get(0);
+
+            for (int i = 0; i < cur.edges.size(); i++) {
+
+                queue.add(cur.edges.get(i));
+
+            }
+
+            nodes.add(cur);
+
+            queue.remove(0);
+        }
+
+    }
+
+}
+
+
+
+
 public static void main(String[] args) {
 	
-	
-	
-	
-}
+	}
 }
